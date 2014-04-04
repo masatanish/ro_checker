@@ -1,3 +1,17 @@
 #!/usr/bin/env ruby
 
+require 'trollop'
 require 'ro_checker'
+
+opts = Trollop::options do
+  opt :file, 'target cfb file path', :type => :string, :required => true
+  opt :verbose, 'verbose mode'
+end
+
+unless File.file?(opts[:file])
+  STDERR.puts "file not found: #{opts[:file]}"
+end
+
+results = RoChecker.check_from_path(opts[:file])
+value = results.values.any?{|v| v == true} ? 'suspicious' : 'not suspicious'
+puts "ro-checker: " + value
