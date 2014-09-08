@@ -1,29 +1,34 @@
 # RoChecker
 
-TODO: Write a gem description
+O-Checker Ruby implimentation
+
+## Requirements
+- Ruby 2.0
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'ro_checker'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install ro_checker
+	$ cd ro_checker
+	$ bundle install
+	$ bundle exec rake install
 
 ## Usage
+### Command line
+- Check File
+    $ ro-checker -f TARGET_PATH
 
-TODO: Write usage instructions here
+- help
+    $ ro-checker -h
 
-## Contributing
+### In Ruby Script
+    require 'ro_checker'
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+    path = 'TARGET PATH'
+    results = RoChecker.check_from_path(path)
+    puts (results.values.any?{|v| v == false } ? 'suspicious' : 'not suspicious')
+
+    max_key_len = results.keys.max_by{|k| k.length }.length
+    results.each do |key, val|
+      k = key.to_s.gsub(/_/,' ') + ":"
+      v = val ? 'yes' : 'no'
+      puts "  #{k.ljust(max_key_len+2)} #{v}"
+    end
+
