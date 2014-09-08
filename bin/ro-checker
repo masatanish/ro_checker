@@ -4,14 +4,21 @@ require 'trollop'
 require 'ro_checker'
 
 opts = Trollop::options do
-  opt :file, 'target cfb file path', :type => :string, :required => true
+  opt :file, 'target cfb file path', :type => :io, :required => true
   opt :verbose, 'verbose mode'
-end
-
-unless File.file?(opts[:file])
-  STDERR.puts "file not found: #{opts[:file]}"
+  opt :type, 'output format(text, json, number)', :default => 'text'
 end
 
 results = RoChecker.check_from_path(opts[:file])
+total_result = results.values.any?{|v| v == true}
+case opt[:type]
 value = results.values.any?{|v| v == true} ? 'suspicious' : 'not suspicious'
 puts "ro-checker: " + value
+if opts[:verbose]
+  max_key_len = results.keys.max_by{|k| k.length }.length
+  results.each do |key, val|
+    k = key.to_s.gsub(/_/,' ') + ":"
+    v = val ? 'yes' : 'no'
+    puts "  #{k.ljust(max_key_len+2)} #{v}"
+  end
+end

@@ -1,3 +1,4 @@
+# coding: utf-8
 require "ro_checker/version"
 require 'ro_checker/cfb'
 
@@ -17,8 +18,8 @@ module RoChecker
       results = {}
       results[:valid_file_size] = cfb.valid_file_size?
       results[:valid_fat_size] = cfb.valid_fat_size?
-      results[:no_tail_freesect] = cfb.no_tail_freesect?
-      results[:has_no_unknown_sectors] = cfb.has_no_unknown_sectors?
+      results[:no_freesects_at_tail] = cfb.no_tail_freesect?
+      results[:no_unknown_sectors] = cfb.has_no_unknown_sectors?
       results
     end
   end
