@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = RoChecker::VERSION
   spec.authors       = ["masatanish"]
   spec.email         = ["masatanish@gmail.com"]
-  spec.description   = %q{ruby implementation of o-checker: find suspicious CFB file}
-  spec.summary       = %q{ruby implementation of o-checker: find suspicious CFB file}
+  spec.description   = %q{Ruby implementation of o-checker: find suspicious CFB file}
+  spec.summary       = %q{Ruby implementation of o-checker: find suspicious CFB file}
   spec.homepage      = ""
   spec.license       = "MIT"
 
