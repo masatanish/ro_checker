@@ -4,11 +4,17 @@ require 'trollop'
 require 'ro_checker'
 
 opts = Trollop::options do
-  opt :file, 'target cfb file path (must)', :type => :io, :required => true
+  banner "#{$0} [options] FILE_PATH"
   opt :verbose, 'verbose mode'
 end
+path = ARGV.shift
+Trollop.die "Input file is missing" unless File.file? path.to_s
 
-results = RoChecker.check_from_path(opts[:file])
+begin
+  results = RoChecker::CFB.check_from_path(path)
+rescue => e
+  Trollop.die e
+end
 total_result = results.values.any?{|v| v == true}
 value = (results.values.any?{|v| v == false } ? 'suspicious' : 'not suspicious')
 puts "ro-checker: " + value
