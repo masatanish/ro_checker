@@ -17,6 +17,7 @@ rescue => e
 end
 total_result = results.values.any?{|v| v == true}
 value = (results.values.any?{|v| v == false } ? 'suspicious' : 'not suspicious')
+puts "target: " + File.expand_path(path)
 puts "ro-checker: " + value
 if opts[:verbose]
   max_key_len = results.keys.max_by{|k| k.length }.length
