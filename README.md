@@ -26,6 +26,7 @@ Help
     $ ro-checker -h
 
 ### In Ruby Script
+```ruby
     require 'ro_checker'
 
     path = 'TARGET PATH'
@@ -38,7 +39,7 @@ Help
       v = val ? 'yes' : 'no'
       puts "  #{k.ljust(max_key_len+2)} #{v}"
     end
-
+```
 ## Limitation
 Only CFB file is supported now. PDF is not supported.
 
