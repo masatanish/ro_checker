@@ -15,11 +15,11 @@ This gem is based on the following documents.
 ### Command line
 Check File
 
-    $ ro-checker -f TARGET_PATH
+    $ ro-checker TARGET_PATH
 
 Verbose mode
 
-    $ ro-checker -f TARGET_PATH -v
+    $ ro-checker -v TARGET_PATH
 
 Help
 
