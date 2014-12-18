@@ -7,21 +7,22 @@ This gem is based on the following documents.
 - http://www.slideshare.net/codeblue_jp/yuuhei-otsubo-enpub
 - http://www.slideshare.net/codeblue_jp/yuuhei-otsubo-japub
 
-## Requirements
-- Ruby 2.0
 
 ## Installation
 	$ gem install ro_checker
 
 ## Usage
 ### Command line
-- Check File
+Check File
+
     $ ro-checker -f TARGET_PATH
 
-- Verbose mode
+Verbose mode
+
     $ ro-checker -f TARGET_PATH -v
 
-- Help
+Help
+
     $ ro-checker -h
 
 ### In Ruby Script
