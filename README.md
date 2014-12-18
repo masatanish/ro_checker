@@ -1,28 +1,34 @@
 # RoChecker
 
-O-Checker Ruby implimentation
+O-Checker Ruby implimentation.
+
+This gem is based on the following documents.
+
+- http://www.slideshare.net/codeblue_jp/yuuhei-otsubo-enpub
+- http://www.slideshare.net/codeblue_jp/yuuhei-otsubo-japub
 
 ## Requirements
 - Ruby 2.0
 
 ## Installation
-	$ cd ro_checker
-	$ bundle install
-	$ bundle exec rake install
+	$ gem install ro_checker
 
 ## Usage
 ### Command line
 - Check File
     $ ro-checker -f TARGET_PATH
 
-- help
+- Verbose mode
+    $ ro-checker -f TARGET_PATH -v
+
+- Help
     $ ro-checker -h
 
 ### In Ruby Script
     require 'ro_checker'
 
     path = 'TARGET PATH'
-    results = RoChecker.check_from_path(path)
+    results = RoChecker::CFB.check_from_path(path)
     puts (results.values.any?{|v| v == false } ? 'suspicious' : 'not suspicious')
 
     max_key_len = results.keys.max_by{|k| k.length }.length
@@ -32,3 +38,13 @@ O-Checker Ruby implimentation
       puts "  #{k.ljust(max_key_len+2)} #{v}"
     end
 
+## Limitation
+Only CFB file is supported now. PDF is not supported.
+
+## Contributing
+
+1. Fork it ( http://github.com/masatanish/ro_checker/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
